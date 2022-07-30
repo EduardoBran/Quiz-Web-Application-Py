@@ -1,0 +1,16 @@
+{% load static %}
+
+<html>
+
+    {% include 'parciais/_head.html' %}
+
+    <body>        
+        {% include 'parciais/_nav.html' %}
+        {% block content %}   
+        {% endblock %}
+        <br>
+    </body>
+    
+    {% include 'parciais/_footer.html' %}
+
+</html>
