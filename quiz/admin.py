@@ -1,3 +1,17 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import *
+
+
+class QuestionsModelAdmin(admin.ModelAdmin):
+    list_display = [
+        'question',
+        'ans'
+    ]
+    
+    search_fields = [
+        'question'
+    ]
+    
+
+admin.site.register(QuestionsModel, QuestionsModelAdmin)
