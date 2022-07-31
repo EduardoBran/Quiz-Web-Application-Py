@@ -98,4 +98,5 @@ def loginPage(request):
         return render(request, 'quiz/login.html', context)
 
 def logoutPage(request):
+    logout(request)
     return redirect('/')
