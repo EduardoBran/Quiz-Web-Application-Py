@@ -1,1 +1,25 @@
-result
+{% extends 'base.html' %}
+{% load edufilters %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row align-items-center vh-100">
+        <div class="col-md-6 mx-auto">
+            <div class="card shadow border">
+                <img class="card-img-top" src="https://inisa.ufms.br/files/2018/12/Resultado.png" alt="Card image cap">
+                <div class="card-body d-flex flex-column align-items-center">
+                    <h4 class="card-title" style="padding-bottom: 10px;">Pontuação: {{score}}</label></h4>
+                    <p class="card-text">Média: {{percent|formata_pontuacao}}%</p>
+                    <p class="card-text">Tempo: {{time}} seconds</p>
+                    <p class="card-text">Respostas corretas: {{correct}}</p>
+                    <p class="card-text">Respostas incorretas: {{wrong}}</p>
+                    <p class="card-text">Total de questões: {{total}}</p>
+                    <h5 class="card-text">All the best for next quiz!</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
