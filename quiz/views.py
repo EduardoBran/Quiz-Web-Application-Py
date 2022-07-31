@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 
 from .forms import *
@@ -78,7 +79,23 @@ def registerPage(request):
         return render(request, 'quiz/register.html', context)
 
 def loginPage(request):
-    return render(request, 'quiz/login.html')
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    else:
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            
+            user = authenticate(request, username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            
+        context = {}
+        
+        return render(request, 'quiz/login.html', context)
 
 def logoutPage(request):
     return redirect('/')
