@@ -60,7 +60,22 @@ def addQuestionPage(request):
     
 
 def registerPage(request):
-    return render(request, 'quiz/register.html')
+    if request.user.is_authenticated:
+        return redirect('home')
+    
+    else:
+        form = createUserForm()
+        
+        if request.method == 'POST':
+            form = createUserForm(request.POST)
+            
+            if form.is_valid():
+                user = form.save()
+                return redirect('login')
+
+        context = {'form': form}
+        
+        return render(request, 'quiz/register.html', context)
 
 def loginPage(request):
     return render(request, 'quiz/login.html')
