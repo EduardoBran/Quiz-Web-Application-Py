@@ -44,7 +44,20 @@ def home(request):
     
 
 def addQuestionPage(request):
-    return render(request, 'quiz/addQuestion.html')
+    if request.user.is_staff:
+        form = addQuestionForm()
+        if request.method == 'POST':
+            form = addQuestionForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/')
+        
+        context = {'form': form}
+        return render(request, 'quiz/addQuestion.html', context)
+    
+    else:
+        return redirect('home')
+    
 
 def registerPage(request):
     return render(request, 'quiz/register.html')
