@@ -1,8 +1,47 @@
 from django.shortcuts import redirect, render
 
+from .forms import *
+from .models import *
+
 
 def home(request):
-    return render(request, 'quiz/home.html')
+    if request.method == 'POST':
+        questions = QuestionsModel.objects.all()
+        score = 0
+        wrong = 0
+        correct = 0
+        total = 0
+        
+        for q in questions:
+            total += 1
+            
+            if q.ans == request.POST.get(q.question):
+                score += 10
+                correct += 1
+                
+            else:
+                wrong += 1
+        
+        percent = score / (total * 10) * 100
+        
+        context = {
+            'score': score,
+            'time': request.POST.get('timer'),
+            'correct': correct,
+            'wrong': wrong,
+            'percent': percent,
+            'total': total
+        } 
+        return render(request, 'quiz/result.html', context)
+    
+    else:
+        questions = QuestionsModel.objects.all()
+        
+        context = {
+            'questions': questions
+        }
+        return render(request, 'quiz/home.html', context)
+    
 
 def addQuestionPage(request):
     return render(request, 'quiz/addQuestion.html')
