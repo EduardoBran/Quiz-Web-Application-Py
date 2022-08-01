@@ -5,6 +5,7 @@
 {% block content %}
 
 <div class="container jumbotron">
+    {% include 'parciais/_messages.html' %}
     <form method="POST" action="">
         {% csrf_token %}
         <p><input type="text" name="username" placeholder="Username..."></p>

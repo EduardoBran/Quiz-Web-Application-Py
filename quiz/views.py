@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect, render
 
@@ -72,7 +73,18 @@ def registerPage(request):
             
             if form.is_valid():
                 user = form.save()
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    f'Bem vindo. Agora você já pode realizar o login com sucesso.'
+                )
                 return redirect('login')
+            else:
+                messages.add_message(
+                    request,
+                    messages.ERROR,
+                    f'Ooops... parece que temos algum dado inválido.'
+                )
 
         context = {'form': form}
         
@@ -91,12 +103,32 @@ def loginPage(request):
             
             if user is not None:
                 login(request, user)
+                messages.add_message(
+                    request,
+                    messages.SUCCESS,
+                    f'Bem vindo {username}. Você agora está logado.'
+                )
                 return redirect('/')
+            else:
+                messages.add_message(
+                    request,
+                    messages.ERROR,
+                    f'Usuário ou senha incorretas.'
+                )
+                return render(request, 'quiz/login.html')  
             
         context = {}
         
         return render(request, 'quiz/login.html', context)
 
 def logoutPage(request):
-    logout(request)
-    return redirect('/')
+    if request.user.is_authenticated:
+        logout(request)
+        messages.add_message(
+            request,
+            messages.WARNING,
+            f'Usuário foi deslogado com sucesso.'
+        )
+        return redirect('/')
+    else:        
+        return redirect('home')
