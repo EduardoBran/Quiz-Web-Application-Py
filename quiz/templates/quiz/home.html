@@ -2,53 +2,66 @@
 
 {% block content %}
 {% load static %}
+<br><br><br>
 
-<div class="container">
+<div class="container-fluid">
     {% include 'parciais/_messages.html' %}
-    <h1>Welcome to Eduardo's Quiz</h1>
-
     <div align="right" id="displaytimer"><b>Timer: 0 seconds</b></div>
+    <div class="jumbotron" align="center">
+        <h3>Welcome to Eduardo's Quiz</h3>
+        <p>How good is your general knowledge?</p>
+    </div>
 
+    <form method='post' action=''>
+        {% csrf_token %}
+        {% for q in questions%}
+        <div class="card border-info mb-4 ">
+
+            <div class="card-header bg-info text-white">
+                <span>Questão {{q.q_number}}</span>
+            </div>
+            <div class="card-body">
+                <label for="question">{{q.question}}</label>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="{{q.question}}" id="q1_r1" value="option1">
+                    <label class="form-check-label" for="q1_r1">
+                        {{q.op1}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="{{q.question}}" id="q1_r2" value="option2">
+                    <label class="form-check-label" for="q1_r2">
+                        {{q.op2}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="{{q.question}}" id="q1_r3" value="option3">
+                    <label class="form-check-label" for="q1_r3">
+                        {{q.op3}}
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="{{q.question}}" id="q1_r4" value="option4">
+                    <label class="form-check-label" for="q1_r4">
+                        {{q.op4}}
+                    </label>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+        <input id='timer' type='hidden' name="timer" value="">
+        <br>
+
+        <button type="submit" class="btn btn-info" style="margin-bottom: 62px; width: 100%; height: 45px;">Conferir
+            Respostas</button>
+    </form>
 </div>
 
-<form method='post' action=''>
-    {% csrf_token %}
-    {% for q in questions%}
-    <div class="form-group">
-        <label for="question">{{q.question}}</label>
-    </div>
-    <div class="form-check">
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option1" checked>
-            <label class="form-check-label" for="gridRadios1">
-                {{q.op1}}
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option2">
-            <label class="form-check-label" for="gridRadios2">
-                {{q.op2}}
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios1" value="option3">
-            <label class="form-check-label" for="gridRadios1">
-                {{q.op3}}
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="{{q.question}}" id="gridRadios2" value="option4">
-            <label class="form-check-label" for="gridRadios2">
-                {{q.op4}}
-            </label>
-        </div>
-        <br>
-    </div>
-    {% endfor %}
-    <input id='timer' type='hidden' name="timer" value="">
-    <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 
 {% block script %}
 <script>
