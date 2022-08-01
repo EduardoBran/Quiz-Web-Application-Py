@@ -76,7 +76,7 @@ def registerPage(request):
                 messages.add_message(
                     request,
                     messages.SUCCESS,
-                    f'Bem vindo. Agora você já pode realizar o login com sucesso.'
+                    f'Bem vindo(a). Agora você já pode realizar o login com sucesso.'
                 )
                 return redirect('login')
             else:
@@ -106,7 +106,7 @@ def loginPage(request):
                 messages.add_message(
                     request,
                     messages.SUCCESS,
-                    f'Bem vindo {username}. Você agora está logado.'
+                    f'Bem vindo(a) {username}. Você agora está logado.'
                 )
                 return redirect('/')
             else:
