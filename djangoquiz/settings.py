@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'quiz',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,8 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'templates/static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MESSAGE_TAGS = {
     constants.ERROR: 'alert-danger',

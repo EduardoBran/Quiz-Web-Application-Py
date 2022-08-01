@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block content %}
+<div class="col-lg-12">
+    <h1 class="mt-3 mb-3">Cadastro</h1>
 
-<div class="jumbotron container row">
-    <div class="col-md-6">
-        <h1>Add Question</h1>
-        <div class="card card-body">
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{form.as_p}}
-                <br>
-                <input type="submit" name="Submit">
-            </form>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-bottom: 35px;">
+                    Salvar
+                </button>
+            </div>
         </div>
-    </div>
-</div>
+    </form>
 </div>
 
 {% endblock %}
