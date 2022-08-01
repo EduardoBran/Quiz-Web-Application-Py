@@ -7,21 +7,27 @@
 
 <div class="container" style="margin-top: 50px;">
     {% include 'parciais/_messages.html' %}
-</div>
 
-{% if messages %}
-<div class="container" style="margin-top: 20px; margin-bottom: 70px;">
-    {% else %}
-    <div class="container" style="margin-top: 80px;"></div>
-    {% endif %}
-    <div class="container jumbotron">
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{form|crispy}}
+    {% if messages %}
+    <div class="container" style="margin-top: 20px; margin-bottom: 70px;">
+        {% else %}
+        <div class="container" style="margin-top: 80px;">
+            {% endif %}
+            <div class="container jumbotron">
+                <div class="login-form">
+                    <h2 class="text-center">Novo Usuário</h2>
+                    <div class="login-form">
+                        <form method="POST" action="">
 
-            <input class="btn btn-primary btn-block" type="submit" value="Register Account">
-        </form>
+                            {% csrf_token %}
+                            {{form|crispy}}
+
+                            <input class="btn btn-primary btn-block" type="submit" value="Register Account">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
-{% endblock %}
+    {% endblock %}
