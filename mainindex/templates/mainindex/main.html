@@ -1,6 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
 
-MAIN
+<div class="container">
+    <div class="row">
+        <div class=".col-md-6 m-auto">
+            <div class="card text-center" style="margin-top: 120px; margin-left: 12px; margin-right: 12px;">
+                <img src="media/logo.png" alt="" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h3 class="card-title">Welcome To QuizTime</h5>
+
+                        <p class="card-text">Um quiz sobre tecnologia.</p>
+
+                        <a class="btn btn-dark" href="{% url 'home' %}">
+                            Clique para iniciar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
