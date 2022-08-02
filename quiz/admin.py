@@ -19,6 +19,11 @@ class QuestionsModelAdmin(admin.ModelAdmin):
         'mostrar'
     ]
     
+    list_display_links = [
+        'q_number',
+        'question'
+    ]
+    
     search_fields = [
         'question',   
     ]
