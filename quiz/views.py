@@ -8,7 +8,9 @@ from .models import *
 
 def home(request):
     if request.method == 'POST':
-        questions = QuestionsModel.objects.all()
+        questions = QuestionsModel.objects.all().filter(
+            mostrar=True
+        )
         score = 0
         wrong = 0
         correct = 0
@@ -37,7 +39,9 @@ def home(request):
         return render(request, 'quiz/result.html', context)
     
     else:
-        questions = QuestionsModel.objects.all()
+        questions = QuestionsModel.objects.all().filter(
+            mostrar=True
+        )
         
         context = {
             'questions': questions
