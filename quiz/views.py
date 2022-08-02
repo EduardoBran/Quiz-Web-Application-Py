@@ -112,7 +112,7 @@ def loginPage(request):
                     messages.SUCCESS,
                     f'Bem vindo(a) {username}. Você agora está logado.'
                 )
-                return redirect('/')
+                return redirect('home')
             else:
                 messages.add_message(
                     request,
@@ -133,6 +133,6 @@ def logoutPage(request):
             messages.WARNING,
             f'Usuário foi deslogado com sucesso.'
         )
-        return redirect('/')
+        return redirect('home')
     else:        
         return redirect('home')
