@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
             {% if request.user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"><span
+            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><span
                         class="glyphicon glyphicon-user"></span>Olá, {{request.user}}</a></li>
             {% else %}
             <li class="nav-item"></li><a class="nav-link" href="{% url 'login' %}"><span

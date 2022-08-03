@@ -90,12 +90,17 @@ def registerPage(request):
                     f'Ooops... parece que temos algum dado inválido.'
                 )
 
-        context = {'form': form}
-        
+        context = {'form': form}     
         return render(request, 'quiz/register.html', context)
+    
 
 def loginPage(request):
     if request.user.is_authenticated:
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            f'O usuário já se encontra logado.'
+        )
         return redirect('home')
     
     else:
@@ -121,10 +126,10 @@ def loginPage(request):
                 )
                 return render(request, 'quiz/login.html')  
             
-        context = {}
-        
+        context = {}        
         return render(request, 'quiz/login.html', context)
-
+            
+    
 def logoutPage(request):
     if request.user.is_authenticated:
         logout(request)
